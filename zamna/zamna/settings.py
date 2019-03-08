@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'zamna.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dqgr138tonpiv',
+        'USER': 'htkwojdbkctmdw',
+        'PASSWORD': '334d85d1c1140aa5fdb679d169831a451b8e28e81dcf796ec3cc5fb685150f93',
+        'HOST': 'ec2-54-221-236-144.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
