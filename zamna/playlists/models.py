@@ -14,8 +14,8 @@ class Playlist(models.Model):
 
 # Rating
 class Rating(models.Model):
-    playlist_id = models.ForeignKey(Playlist, on_delete=models.SET_NULL)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    playlist_id = models.ForeignKey(Playlist, null=True, blank=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
 
 # Comment
