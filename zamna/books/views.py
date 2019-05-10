@@ -17,9 +17,23 @@ class BooksModelViewSet(viewsets.ModelViewSet):
     # /notebook/all-notes/ devuelve todas las NOTAS dentro de del cuaderno
     def goodreads(self, request, pk=None):
         name = self.request.query_params['name']
-        book = client.search_book(q=name)
+        response = client.search_book(q=name)
+        books = []
+        print(response['results']['work'])
+        print(len(response['results']['work']))
+        for r in response['results']['work']:
+            book = {
+                'average_rating': r['average_rating'],
+                'original_publication_year': r['original_publication_year']['#text'],
+                'id': r['best_book']['id']['#text'],
+                'title': r['best_book']['title'],
+                'author': r['best_book']['author']['name'],
+                'img': r['best_book']['image_url'],
+                'small_img': r['best_book']['small_image_url'],
+            }
+            books.append(book)
         return Response(
-            book
+            list(books)
         )
 
 

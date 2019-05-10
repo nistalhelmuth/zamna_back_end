@@ -20,8 +20,7 @@ class Rating(models.Model):
 
 # Comment
 class Comment(models.Model):
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book_id = models.Index
     playlist_id = models.ForeignKey(Playlist, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
-
