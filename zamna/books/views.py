@@ -14,8 +14,7 @@ class BooksModelViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.BookSerializer
 
     @action(methods=['GET'], detail=False, url_path='search')
-    # /notebook/all-notes/ devuelve todas las NOTAS dentro de del cuaderno
-    def goodreads(self, request, pk=None):
+    def goodreads_books(self, request, pk=None):
         name = self.request.query_params['name']
         response = client.search_book(q=name)
         books = []
@@ -34,6 +33,14 @@ class BooksModelViewSet(viewsets.ModelViewSet):
             books.append(book)
         return Response(
             list(books)
+        )
+
+    @action(methods=['GET'], detail=False, url_path='book')
+    def goodreads_book(self, request, pk=None):
+        id = self.request.query_params['id']
+        response = client.Book.show(id)
+        return Response(
+            response
         )
 
 
