@@ -15,11 +15,10 @@ class BooksModelViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=False, url_path='search')
     def goodreads_books(self, request, pk=None):
+        client = gr.Client(developer_key='FtV2JkeEaiobnja5s890Q')
         name = self.request.query_params['name']
         response = client.search_book(q=name)
         books = []
-        print(response['results']['work'])
-        print(len(response['results']['work']))
         for r in response['results']['work']:
             book = {
                 'average_rating': r['average_rating'],
