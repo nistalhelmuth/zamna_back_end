@@ -9,7 +9,7 @@ class Playlist(models.Model):
     link = models.CharField(max_length=150)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book_id = models.IntegerField()
 
 
 # Rating
@@ -20,7 +20,7 @@ class Rating(models.Model):
 
 # Comment
 class Comment(models.Model):
-    book_id = models.Index
+    book_id = models.IntegerField()
     playlist_id = models.ForeignKey(Playlist, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
