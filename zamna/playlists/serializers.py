@@ -3,6 +3,7 @@ from . import models
 
 
 class PlaylistSerializer(serializers.ModelSerializer):
+    #user = UserSerializar()
     class Meta:
         model = models.Playlist
         exclude = []
