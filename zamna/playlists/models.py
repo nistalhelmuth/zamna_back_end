@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 class Playlist(models.Model):
     #name = models.CharField(max_length=100)
     uri = models.CharField(max_length=150)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField()
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    #description = models.TextField()
     book_id = models.IntegerField()
     votes = models.IntegerField(default = 0)
     #rating = models.DecimalField(default = -1.0, ,decimal_places=2)
