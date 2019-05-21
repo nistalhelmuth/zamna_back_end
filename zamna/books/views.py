@@ -9,6 +9,7 @@ from . import models, serializers
 import goodreads_api_client as gr
 client = gr.Client(developer_key='FtV2JkeEaiobnja5s890Q')
 
+
 class BooksModelViewSet(viewsets.ModelViewSet):
     queryset = models.Book.objects.all()
     serializer_class = serializers.BookSerializer
@@ -42,8 +43,16 @@ class BooksModelViewSet(viewsets.ModelViewSet):
             response
         )
 
+class UserPermissions(BasePermission):
+    def has_permission(self, request, view):
+        if view.action == 'reset_password':
+            return True
+        if view.action == 'create':
+            return True
+        return True
 
 class UserModelViewSet(viewsets.ModelViewSet):
+    permission_classes = (UserPermissions,)
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
 
